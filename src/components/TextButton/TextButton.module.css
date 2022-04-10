@@ -1,0 +1,17 @@
+.btn {
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width: 9rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    background: rgba(29,155,240);
+    padding-bottom: 0.8rem;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: rgba(26,140,216);
+}
