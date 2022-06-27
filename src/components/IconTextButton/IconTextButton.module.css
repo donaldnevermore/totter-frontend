@@ -1,11 +1,16 @@
+.wrapper {
+    padding: 4px;
+}
+
 .btn {
-    background: white;
-    border: none;
+    display: inline-block;
     border-radius: 9999px;
-    padding: 12px;
     cursor: pointer;
+    padding: 12px 24px;
+    font-size: large;
+    font-weight: bold;
 }
 
 .btn:hover {
-    background: rgba(15,20,25,0.1);
+    background: rgba(15, 20, 25, 0.1);
 }

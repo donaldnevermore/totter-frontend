@@ -1,23 +1,28 @@
 import React from "react"
-import ReactDOM from "react-dom"
+import { createRoot } from "react-dom/client"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import reportWebVitals from "./reportWebVitals"
 
 import "./index.css"
 import App from "./App"
-import { Main } from "pages/Main/Main"
+import { Home } from "pages/Home/Home"
+import { Tweets } from "pages/Tweets/Tweets"
 
-ReactDOM.render(
+const container = document.getElementById("root")
+const root = createRoot(container!)
+root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}>
-                    <Route path="tweets" element={<Main />}/>
+                    <Route index element={<Home />}/>
+                    <Route path="tweets" element={<Home />}>
+                        <Route path=":tweetId" element={<Tweets />}/>
+                    </Route>
                 </Route>
             </Routes>
         </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById("root")
+    </React.StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function

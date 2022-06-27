@@ -1,7 +1,7 @@
 const PREFIX = "/api"
 
 /**
- * 所有 API 都以 / 开头，以 / 结尾
+ * API starts with / and ends with /
  */
 export const API = {
     TWEETS: `${PREFIX}/tweets/`,

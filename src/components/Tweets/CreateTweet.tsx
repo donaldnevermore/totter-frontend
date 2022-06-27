@@ -12,6 +12,7 @@ import styles from "components/Tweets/CreateTweet.module.css"
 
 function Create(props: {user?: User}) {
     const [content, setContent] = useState("")
+    const [isPreview, setPreview] = useState(false)
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setContent(event.target.value)
@@ -24,17 +25,25 @@ function Create(props: {user?: User}) {
         console.log(content)
     }
 
+    const handlePreview = () => {
+        setPreview(!isPreview)
+    }
+
+
     return (
         <Box className={styles.box}>
-            <div>preview</div>
-            <div>
+            <div onClick={handlePreview}>preview</div>
+            <div className={isPreview ? styles.hide : ""}>
                 <TextareaAutosize maxRows={30}
                     className={styles.editor}
                     placeholder="What's happening?"
                     onChange={handleChange} />
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
             </div>
-            <div>tweet</div>
+            <div className={isPreview ? "" :  styles.hide}>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} >
+                    {content}
+                </ReactMarkdown>
+            </div>
             <TextButton onClick={handleClick}>Tweet</TextButton>
         </Box>
     )

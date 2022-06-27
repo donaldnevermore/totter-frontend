@@ -46,12 +46,13 @@
     width: 40px;
     height: 20px;
     position: relative;
+    text-align: center;
 }
 
 .icon {
     position: absolute;
-    top:0px;
-    right:0px;
+    top: 0px;
+    right: 0px;
     bottom: 0px;
     left: 0px;
     width: 35px;
@@ -61,10 +62,11 @@
 }
 
 .icon:hover {
-    background-color: rgba(29,155,240,0.1);
+    background-color: rgba(29, 155, 240, 0.1);
 }
 
-.username, .time {
+.username,
+.time {
     color: rgb(83, 100, 113);
 }
 
