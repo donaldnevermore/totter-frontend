@@ -1,6 +1,8 @@
 /**
- * URL starts with / and ends with /
+ * URL should start with / and ends with /
  */
 export const URL = {
-    TWEETS: "/tweets/"
+    HOME: "/",
+    TWEETS: "/tweets/",
+    USERS: "/users/"
 }

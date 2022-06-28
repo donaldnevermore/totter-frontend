@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm"
 import styles from "./MarkdownEditor.module.css"
 import { TextButton } from "components/TextButton/TextButton"
 
-export function MarkdownEditor(props: {text: string, handleComment: (content: string) => void}) {
+export function MarkdownEditor(props: {text: string, handleSubmit: (content: string) => void}) {
     const [content, setContent] = useState("")
     const [isPreview, setPreview] = useState(false)
 
@@ -22,7 +22,7 @@ export function MarkdownEditor(props: {text: string, handleComment: (content: st
         // const { user } = props
         // if (!user.token) {
         // }
-        props.handleComment(content)
+        props.handleSubmit(content)
     }
 
     return (

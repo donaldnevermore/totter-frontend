@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { Tabs, Tab, IconButton, Button } from "@mui/material"
 
 import { User, update } from "lib/user"
-import { TweetList } from "components/Tweets/List"
+import { TweetList } from "pages/Tweets/List"
 import styles from "./Center.module.css"
 
 interface Props {

@@ -6,23 +6,25 @@ import { Grid } from "@mui/material"
 
 import { configureStore } from "lib/configure-store"
 import "./App.css"
-import { Side } from "pages/Side/Side"
+import { Nav } from "pages/Nav/Nav"
 
 function App() {
     const { store, persistor } = configureStore()
     return (
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                <Grid container>
-                    <Grid item xs={2}>
-                        <Side/>
+        <React.StrictMode>
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <Grid container>
+                        <Grid item xs={2}>
+                            <Nav />
+                        </Grid>
+                        <Grid item xs={10}>
+                            <Outlet />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={10}>
-                        <Outlet/>
-                    </Grid>
-                </Grid>
-            </PersistGate>
-        </Provider>
+                </PersistGate>
+            </Provider>
+        </React.StrictMode>
     )
 }
 

@@ -5,7 +5,6 @@ import { connect } from "react-redux"
 import { Box, List, Button, Avatar, Input, Grid } from "@mui/material"
 
 import { Comment } from "components/Comment/Comment"
-import { API } from "shared/api"
 import styles from "./View.module.css"
 
 moment.locale("zh-CN")
@@ -43,48 +42,7 @@ function PostView({ issue, commentList, user, onCommentAdd }: any) {
                 {/* <ReactMarkdown source={issue.content} /> */}
             </div>
             <List />
-            <AddComment user={user} onCommentAdd={onCommentAdd} />
         </div>
-    )
-}
-
-function AddComment({ user, onCommentAdd }: any) {
-    const [comment, setComment] = useState("")
-    const [submitting, setSubmitting] = useState(false)
-
-    const handleSubmit = async() => {
-        if (!comment) {
-            return
-        }
-
-        setSubmitting(true)
-
-        try {
-            const { id } = { id: 1 }
-            // const { data } = await axios.post(API.COMMENTS, {
-            //     author_id: user.id,
-            //     issue_id: id,
-            //     content: comment,
-            //     parent_id: null
-            // })
-            onCommentAdd()
-        }
-        catch (err) {
-            console.log(err)
-        }
-        finally {
-            setSubmitting(false)
-        }
-    }
-
-    const handleChange = (event: any) => {
-        setComment(event.target.value)
-    }
-
-    return (
-        <Comment className={styles.addComment}
-            avatar={<Avatar src={user.avatar} alt="avatar" />}
-        />
     )
 }
 
@@ -93,7 +51,7 @@ class PostState extends Component {
     state: any = {
         issue: {},
         commentList: []
-    };
+    }
 
     constructor(props: any) {
         super(props)
@@ -120,7 +78,7 @@ class PostState extends Component {
         // this.setState({
         //     commentList: data.comment_list
         // })
-    };
+    }
 
     render() {
         const { user } = this.props

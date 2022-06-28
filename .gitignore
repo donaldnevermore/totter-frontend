@@ -3,6 +3,8 @@
 .idea/
 .vs/
 
+.pytest_cache
+
 # Compiled
 dist/
 build/

@@ -6,23 +6,19 @@ import reportWebVitals from "./reportWebVitals"
 import "./index.css"
 import App from "./App"
 import { Home } from "pages/Home/Home"
-import { Tweets } from "pages/Tweets/Tweets"
+import { TweetView } from "pages/Tweets/View"
 
 const container = document.getElementById("root")
 const root = createRoot(container!)
 root.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<App />}>
-                    <Route index element={<Home />}/>
-                    <Route path="tweets" element={<Home />}>
-                        <Route path=":tweetId" element={<Tweets />}/>
-                    </Route>
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    </React.StrictMode>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<App />}>
+                <Route index element={<Home />} />
+                <Route path="tweets/:tweetId" element={<TweetView />} />
+            </Route>
+        </Routes>
+    </BrowserRouter>
 )
 
 // If you want to start measuring performance in your app, pass a function

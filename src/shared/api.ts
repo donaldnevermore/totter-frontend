@@ -1,9 +1,3 @@
-const PREFIX = "/api"
-
-/**
- * API starts with / and ends with /
- */
-export const API = {
-    TWEETS: `${PREFIX}/tweets/`,
-    COMMENTS: `${PREFIX}/comments/`
+export const fetcher = (input: RequestInfo|URL, init?: RequestInit|undefined) => {
+    return fetch(input, init).then((res) => res.json())
 }
