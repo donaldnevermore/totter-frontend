@@ -1,11 +1,13 @@
 import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { Avatar } from "@mui/material"
 import { ChatBubbleOutline } from "@mui/icons-material"
+import ReactMarkdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 import styles from "pages/Tweets/Tweet.module.css"
 import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
 import { URL } from "shared/url"
+import { AvatarSide } from "components/AvatarSide/AvatarSide"
 
 export interface TweetItem {
     title: string
@@ -21,8 +23,9 @@ export interface TweetItem {
     }
 }
 
-export function Tweet(props: { tweet: TweetItem }) {
-    const { tweet } = props
+export const Tweet: React.FC<{
+    tweet: TweetItem
+}> = ({ tweet }) => {
     const { author } = tweet
     const [show, setShow] = useState(false)
     const navigate = useNavigate()
@@ -48,11 +51,7 @@ export function Tweet(props: { tweet: TweetItem }) {
     return (
         <div>
             <main className={styles.main} onClick={goToTweet}>
-                <aside className={styles.menu}>
-                    <Avatar className={styles.avatar}>
-                        {author.avatar}
-                    </Avatar>
-                </aside>
+                <AvatarSide avatar={author.avatar}></AvatarSide>
 
                 <article className={styles.content}>
                     <header className={styles.head}>
@@ -72,8 +71,10 @@ export function Tweet(props: { tweet: TweetItem }) {
                             </span>
                         </div>
                     </header>
-                    <article className={styles.body}>
-                        新开了一个标签 #深海的面条 记录和评价我吃的各种面条, 争取一周更一条叭 w
+                    <ReactMarkdown remarkPlugins={[remarkGfm]} >
+                        {tweet.content}
+                    </ReactMarkdown>
+                    <article>
                     </article>
                     <footer>
                         <ChatBubbleOutline onClick={openEditor}></ChatBubbleOutline>

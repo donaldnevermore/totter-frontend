@@ -1,0 +1,9 @@
+.main {
+    flex: 0 1 auto;
+    padding-right: 12px;
+}
+
+.avatar {
+    width: 48px;
+    height: 48px;
+}

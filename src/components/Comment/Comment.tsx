@@ -1,7 +1,8 @@
 import React from "react"
+import { Article } from "components/Article/Article"
 
 export function Comment(props: any) {
     const { comment } = props
 
-    return <div>{comment.content}</div>
+    return <Article data={comment} />
 }

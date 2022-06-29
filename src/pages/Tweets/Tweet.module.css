@@ -9,11 +9,6 @@
     background-color: rgba(29, 155, 240, 0.1);
 }
 
-.menu {
-    flex: 0 1 auto;
-    padding-right: 12px;
-}
-
 .content {
     flex: 1 0 auto;
 }
@@ -25,11 +20,6 @@
 
 .info {
     height: 20px;
-}
-
-.avatar {
-    width: 48px;
-    height: 48px;
 }
 
 .name {
