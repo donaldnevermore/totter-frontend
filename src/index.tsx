@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import reportWebVitals from "./reportWebVitals"
 
 import "./index.css"
-import App from "./App"
-import { Home } from "pages/Home/Home"
-import { TweetView } from "pages/Tweets/View"
+import App from "./components/App"
+import { Home } from "components/Home/Home"
+import { TweetView } from "components/Tweets/View"
 
 const container = document.getElementById("root")
 const root = createRoot(container!)

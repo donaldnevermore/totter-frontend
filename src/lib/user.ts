@@ -1,11 +1,11 @@
 import { actions } from "lib/actions"
 
-export interface User {
+export type User = {
     id: number;
     username: string;
     name: string;
     avatar: string;
-    token: string;
+    token?: string;
 }
 
 export function update(data: { user: User }) {

@@ -5,8 +5,7 @@ import { Outlet } from "react-router-dom"
 import { Grid } from "@mui/material"
 
 import { configureStore } from "lib/configure-store"
-import "./App.css"
-import { Nav } from "pages/Nav/Nav"
+import { Nav } from "components/Nav/Nav"
 
 function App() {
     const { store, persistor } = configureStore()

@@ -1,9 +1,8 @@
 import React from "react"
-import { Stack, Box, Grid } from "@mui/material"
 
-import { CreateTweet } from "components/Tweet/CreateTweet"
-import { TweetList } from "pages/Tweets/List"
-import { Layout } from "pages/Layout/Layout"
+import { CreateTweet } from "components/Tweets/CreateTweet"
+import { TweetList } from "components/Tweets/List"
+import { Layout } from "components/Layout/Layout"
 import styles from "./Home.module.css"
 
 export function Home() {

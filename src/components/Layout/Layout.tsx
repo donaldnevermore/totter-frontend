@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from "react"
-import { Stack, Box, Grid } from "@mui/material"
+import { Grid } from "@mui/material"
 
 import styles from "./Layout.module.css"
 

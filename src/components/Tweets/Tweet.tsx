@@ -1,27 +1,14 @@
 import React, { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { ChatBubbleOutline } from "@mui/icons-material"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
-import styles from "pages/Tweets/Tweet.module.css"
+import styles from "./Tweet.module.css"
 import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
-import { URL } from "shared/url"
+import { URL } from "lib/url"
 import { AvatarSide } from "components/AvatarSide/AvatarSide"
-
-export interface TweetItem {
-    title: string
-    id: number
-    content: string
-    created_at: number
-    updated_at: number
-    author: {
-        id: number
-        username: string
-        name: string
-        avatar: string
-    }
-}
+import type { TweetItem } from "lib/tweet-item"
 
 export const Tweet: React.FC<{
     tweet: TweetItem
@@ -40,7 +27,7 @@ export const Tweet: React.FC<{
     }
 
     const goToTweet = () => {
-        navigate(`${URL.TWEETS}${tweet.id}`)
+        navigate(`${URL.TWEETS}/${tweet.id}`)
     }
 
     const goToUser = (event: React.MouseEvent) => {
