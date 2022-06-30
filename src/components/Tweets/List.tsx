@@ -9,45 +9,14 @@ import styles from "./List.module.css"
 
 export const TweetList = () => {
     const [page, setPage] = useState(1)
-    const [tweets, setTweets] = useState(
-        [{
-            id: 1,
-            content: "* sdf",
-            createdAt: 18000,
-            updatedAt: 18000,
-            author: {
-                id: 1,
-                username: "sdfjlksd",
-                name: "sdfjl",
-                avatar: ""
-            }
-        }, {
-            id: 2,
-            content: "* sdf",
-            createdAt: 18000,
-            updatedAt: 18000,
-            author: {
-                id: 1,
-                username: "sdfjlksd",
-                name: "sdfjl",
-                avatar: ""
-            }
-        }
-        , {
-            createdAt: 18000,
-            updatedAt: 18000,
-            id: 3,
-            content: "* sdf",
-            author: {
-                id: 1,
-                username: "sdfjlksd",
-                name: "sdfjl",
-                avatar: ""
-            }
-        }]
-    )
 
-    // const { data, error } = useSWR("/api/tweets/", fetchData)
+    const { data, error } = useSWR("/api/tweets/", fetchData)
+    if (error) {
+        return <div>failed to load</div>
+    }
+    if (!data) {
+        return <div>loading...</div>
+    }
 
     const changePage = (event: React.ChangeEvent<unknown>, page: number) => {
         return
@@ -56,7 +25,7 @@ export const TweetList = () => {
     return (
         <div className={styles.item}>
             {
-                tweets.map((tweet: TweetItem) => <Tweet tweet={tweet} key={tweet.id} />)
+                data.map((tweet: TweetItem) => <Tweet tweet={tweet} key={tweet.id} />)
             }
             <div className={styles.page}>
                 <Pagination count={10} onChange={changePage} />

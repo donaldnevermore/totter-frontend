@@ -4,17 +4,16 @@ import { User } from "lib/user"
 import styles from "./CreateTweet.module.css"
 import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
 import { postData } from "lib/api"
+import { TextButton } from "components/TextButton/TextButton"
 
 export const CreateTweet: React.FC<{
     user?: User
 }> = ({ user }) => {
     const handleTweet = async (content: string) => {
-        // if (!user.token) {
-        // }
         try {
             const result = await postData("/api/tweets/", {
                 content,
-                userId: 1
+                authorId: 1
             })
             console.log(result)
         }
@@ -23,7 +22,22 @@ export const CreateTweet: React.FC<{
         }
     }
 
+    const createUser = async () => {
+        try {
+            const result = await postData("/api/users/", {
+                username: "wang",
+                password: "123456"
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
     return (
-        <MarkdownEditor text="Tweet" handleSubmit={handleTweet} />
+        <div>
+            <MarkdownEditor text="Tweet" handleSubmit={handleTweet} />
+            <TextButton onClick={createUser}>Create User</TextButton>
+        </div>
     )
 }

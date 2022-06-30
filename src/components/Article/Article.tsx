@@ -7,28 +7,13 @@ import { ChatBubbleOutline } from "@mui/icons-material"
 import { AvatarSide } from "components/AvatarSide/AvatarSide"
 import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
 import styles from "./Article.module.css"
-import { postData } from "lib/api"
 
-export const Article: React.FC<any> = ({ data }) => {
+export const Article: React.FC<any> = ({ data, handleSubmit }) => {
     const [show, setShow] = useState(false)
 
     const openEditor = (event: React.MouseEvent) => {
         event.stopPropagation()
         setShow(!show)
-    }
-
-    const handleReply = async (content: string) => {
-        try {
-            const result = await postData("/api/replies/", {
-                content,
-                userId: 1,
-                commentId: data.id,
-            })
-            console.log(result)
-        }
-        catch (err) {
-            console.log(err)
-        }
     }
 
     return (
@@ -45,7 +30,7 @@ export const Article: React.FC<any> = ({ data }) => {
                     </footer>
                 </main>
             </article>
-            {show ? (<MarkdownEditor text="Reply" handleSubmit={handleReply} />) : null }
+            {show ? (<MarkdownEditor text="Reply" handleSubmit={handleSubmit} />) : null }
         </div>
     )
 }

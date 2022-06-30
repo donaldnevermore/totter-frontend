@@ -36,7 +36,7 @@ export const Tweet: React.FC<{
     }
 
     return (
-        <div>
+        <div className={styles.wrapper}>
             <main className={styles.main} onClick={goToTweet}>
                 <AvatarSide avatar={author.avatar}></AvatarSide>
 
@@ -65,8 +65,6 @@ export const Tweet: React.FC<{
                     </article>
                     <footer>
                         <ChatBubbleOutline onClick={openEditor}></ChatBubbleOutline>
-                        <span>Retweet</span>
-                        <span>Like</span>
                     </footer>
                 </article>
             </main>

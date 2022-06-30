@@ -1,49 +1,23 @@
 import React from "react"
-import { Comment } from "components/Comment/Comment"
+import useSWR from "swr"
 
-export function CommentList(props: any) {
-    const  comments  = [{
-        title: "sdfsdf",
-        id: 1,
-        content: "* sdf",
-        created_at: 18000,
-        updated_at: 18000,
-        author: {
-            id: 1,
-            username: "sdfjlksd",
-            name: "sdfjl",
-            avatar: ""
-        }
-    }, {
-        title: "sdfsdf",
-        id: 2,
-        content: "* sdf",
-        created_at: 18000,
-        updated_at: 18000,
-        author: {
-            id: 1,
-            username: "sdfjlksd",
-            name: "sdfjl",
-            avatar: ""
-        }
+import { Comment } from "components/Comment/Comment"
+import { fetchData } from "lib/api"
+
+export const CommentList: React.FC<{
+    tweetId: string
+}> = ({ tweetId }) => {
+    const { data, error } = useSWR(`/api/comments/tweet/${tweetId}/`, fetchData)
+    if (error) {
+        return <div>failed to load</div>
     }
-    , {
-        title: "sdfsdf",
-        id: 3,
-        content: "* sdf",
-        created_at: 18000,
-        updated_at: 18000,
-        author: {
-            id: 1,
-            username: "sdfjlksd",
-            name: "sdfjl",
-            avatar: ""
-        }
-    }]
+    if (!data) {
+        return <div>loading...</div>
+    }
 
     return (
         <div>
-            {comments.map((comment) => <Comment comment={comment} key={comment.id} />)}
+            {data.map((comment: any) => <Comment comment={comment} key={comment.id} />)}
         </div>
     )
 }

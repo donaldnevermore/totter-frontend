@@ -6,18 +6,25 @@ import { useParams } from "react-router-dom"
 import { Layout } from "components/Layout/Layout"
 import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
 import { CommentList } from "components/Comment/List"
-import { postData } from "lib/api"
+import { fetchData, postData } from "lib/api"
+import useSWR from "swr"
 
 export function TweetView() {
     const params = useParams()
-    const content = "# slkjkl"
+    const { data, error } = useSWR(`/api/tweets/${params.tweetId}/`, fetchData)
+    if (error) {
+        return <div>failed to load</div>
+    }
+    if (!data) {
+        return <div>loading...</div>
+    }
 
     const handleComment = async (content: string) => {
         try {
             const result = await postData("/api/comments/", {
                 content,
-                userId: 1,
-                tweetId: params.tweetId
+                authorId: 1,
+                tweetId: parseInt(params.tweetId!)
             })
             console.log(result)
         }
@@ -29,10 +36,10 @@ export function TweetView() {
     return (
         <Layout>
             <ReactMarkdown remarkPlugins={[remarkGfm]} >
-                {content}
+                {data.content}
             </ReactMarkdown>
             <MarkdownEditor text="Reply" handleSubmit={handleComment} />
-            <CommentList />
+            <CommentList tweetId={params.tweetId!} />
         </Layout>
     )
 }
