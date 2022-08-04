@@ -1,4 +1,4 @@
-import React from "react"
+import React, { FC, useState, useEffect } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { useParams } from "react-router-dom"
@@ -6,22 +6,25 @@ import { useParams } from "react-router-dom"
 import { Layout } from "components/Layout/Layout"
 import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
 import { CommentList } from "components/Comment/List"
-import { fetchData, postData } from "lib/api"
-import useSWR from "swr"
+import axios from "axios"
 
-export function TweetView() {
+export const TweetView = () => {
     const params = useParams()
-    const { data, error } = useSWR(`/api/tweets/${params.tweetId}/`, fetchData)
-    if (error) {
-        return <div>failed to load</div>
+    const [data, setData] = useState<any>({})
+
+    const getData = async () => {
+        const { data } = await axios.get(`/api/tweets/${params.tweetId}/`)
+        setData(data)
     }
-    if (!data) {
-        return <div>loading...</div>
-    }
+
+    useEffect(() => {
+        getData()
+    }, [])
+
 
     const handleComment = async (content: string) => {
         try {
-            const result = await postData("/api/comments/", {
+            const result = await axios.post("/api/comments/", {
                 content,
                 authorId: 1,
                 tweetId: parseInt(params.tweetId!)

@@ -3,7 +3,6 @@ import { Link, BrowserRouter } from "react-router-dom"
 import { AppBar, Toolbar, Input, Box } from "@mui/material"
 
 import { Feature } from "components/Nav2/Feature"
-import { LoginBar } from "components/Login/Bar"
 import styles from "./Nav2.module.css"
 
 export function Nav2() {
@@ -25,7 +24,6 @@ export function Nav2() {
                     <Feature />
                 </Box>
                 <Box >
-                    <LoginBar />
                 </Box>
             </Toolbar>
         </AppBar>

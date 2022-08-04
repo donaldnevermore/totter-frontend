@@ -1,9 +1,9 @@
 import React, { useState } from "react"
+import axios from "axios"
 
 import { User } from "lib/user"
 import styles from "./CreateTweet.module.css"
 import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
-import { postData } from "lib/api"
 import { TextButton } from "components/TextButton/TextButton"
 
 export const CreateTweet: React.FC<{
@@ -11,11 +11,10 @@ export const CreateTweet: React.FC<{
 }> = ({ user }) => {
     const handleTweet = async (content: string) => {
         try {
-            const result = await postData("/api/tweets/", {
+            const { data } = await axios.post("/api/tweets/", {
                 content,
                 authorId: 1
             })
-            console.log(result)
         }
         catch (err) {
             console.log(err)
@@ -24,7 +23,7 @@ export const CreateTweet: React.FC<{
 
     const createUser = async () => {
         try {
-            const result = await postData("/api/users/", {
+            const { data } = await axios.post("/api/users/", {
                 username: "wang",
                 password: "123456"
             })

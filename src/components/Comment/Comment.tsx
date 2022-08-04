@@ -1,15 +1,15 @@
-import React from "react"
+import React, { FC } from "react"
+import axios from "axios"
 
 import styles from "./Comment.module.css"
 import { Article } from "components/Article/Article"
-import { postData } from "lib/api"
 
-export const Comment: React.FC<{
+export const Comment: FC<{
     comment: any
 }> = ({ comment }) => {
     const handleReplyToComment = async (content: string) => {
         try {
-            const result = await postData("/api/replies/", {
+            const result = await axios.post("/api/replies/", {
                 content,
                 authorId: 1,
                 commentId: comment.id,
@@ -24,7 +24,7 @@ export const Comment: React.FC<{
 
     const handleReplyToReply = async (content: string) => {
         try {
-            const result = await postData("/api/replies/", {
+            const result = await axios.post("/api/replies/", {
                 content,
                 authorId: 1,
                 commentId: comment.id,

@@ -1,20 +1,23 @@
-import React, { Component, useState } from "react"
-import { Link, BrowserRouter, useNavigate } from "react-router-dom"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
+import React, { FC, useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
 import { Menu, MenuItem, Avatar, Box, IconButton } from "@mui/material"
 
-import { remove, User } from "lib/user"
-import styles from "./Bar.module.css"
+import { User } from "lib/user"
+import styles from "./Icon.module.css"
+import { getLocal, setLocal } from "lib/local"
+import { TextButton } from "components/TextButton/TextButton"
 
-function LoginBarInner(props: { user: User }) {
-    // const navigate = useNavigate()
-    const { user } = props
+export const LoginIcon: FC = () => {
+    const navigate = useNavigate()
+    const user = getLocal("/users/login/")
     const isLoggedIn = !!user.token
 
     const handleLogout = () => {
-        remove()
-        // navigate("/")
+        setLocal("/users/login/", "")
+    }
+
+    const goToLogin = () => {
+        navigate("/login")
     }
 
     if (isLoggedIn) {
@@ -42,23 +45,6 @@ function LoginBarInner(props: { user: User }) {
     }
 
     return (
-        <div>
-            <Link to="/login">登录</Link>
-            <Link to="/login?type=signup">注册</Link>
-        </div>
+        <TextButton onClick={goToLogin}>Login / Signup</TextButton>
     )
 }
-
-function mapStateToProps(state: any) {
-    const { user } = state
-    return { user }
-}
-
-function mapDispatchToProps(dispatch: any) {
-    return bindActionCreators({ remove }, dispatch)
-}
-
-export const LoginBar = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(LoginBarInner)

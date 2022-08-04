@@ -2,26 +2,25 @@
  * API should start with / and end with /
 */
 
-export const fetchData = (url: string, data: any) => {
-    return fetch(url, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    }).then((res) => res.json())
-}
-
-export const postData = async (url: string, data: any = {}) => {
-    return fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        headers: {
-            // "Content-Type": "application/x-www-form-urlencoded",
-            "Content-Type": "application/json"
-        },
-        // body data type must match "Content-Type" header
-        body: JSON.stringify(data)
-    }).then((res) => res.json())
+export const api = {
+    get: async (url: string, data: unknown = {}) => {
+        return fetch(url, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then((res) => res.json())
+    },
+    post: async (url: string, data: unknown = {}) => {
+        return fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }).then((res) => res.json())
+    }
 }
 
 export const toSearchParams = (data: any = {}) => {

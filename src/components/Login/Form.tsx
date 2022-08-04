@@ -1,29 +1,36 @@
 import React, { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
-import { Grid, Box, Button, FormControl, FormLabel, RadioGroup, Radio, Input } from "@mui/material"
+import { Grid, Box, Button, Tabs, Tab, Input } from "@mui/material"
 
-import { update, User } from "lib/user"
+import { User } from "lib/user"
 import styles from "./Form.module.css"
 
-interface Props {
-    update(data: { user: User }): void
-
+type Props = {
     user: User
     form: any
 }
 
-function FormCore(props: Props) {
-    const { type } = useParams()
+function TabPanel(props: any) {
+    const { children, value, index, ...other } = props
+
+    return (
+        <div hidden={value !== index}
+            {...other} >
+            {value === index && (
+                <Box>
+                    {children}
+                </Box>
+            )}
+        </div>
+    )
+}
+
+export const LoginForm = () => {
     const navigate = useNavigate()
+    const [value, setValue] = useState<number>(0)
 
-    const initialLoginState = Number.parseInt(type as string) === 0 ? "login" : "signup"
-    const [status, setStatus] = useState<string>(initialLoginState)
-
-    const handleTabChange = (event: any) => {
-        setStatus(event.target.value)
-        // form resetFields();
+    const handleChange = (event: any) => {
+        setValue(event.target.value)
     }
 
     const onFinished = (values: any) => {
@@ -48,7 +55,7 @@ function FormCore(props: Props) {
         }
     })
 
-    const login = async(options: any) => {
+    const login = async (options: any) => {
         try {
             // const { data } = await axios.post("/api/users/login/", options)
             // if (data.error) {
@@ -63,7 +70,7 @@ function FormCore(props: Props) {
             //     return
             // }
 
-            const { update } = props
+            // const { update } = props
             // update({
             //     user: {
             //         token: data.token,
@@ -81,7 +88,7 @@ function FormCore(props: Props) {
         }
     }
 
-    const signup = async(options: any) => {
+    const signup = async (options: any) => {
         try {
             // const { data } = await axios.post("/api/users/", options)
             // if (data.error) {
@@ -145,15 +152,22 @@ function FormCore(props: Props) {
     }
 
     return (
-        <div>
-            <RadioGroup
-                defaultValue={status}
-                onChange={handleTabChange}>
-                <Radio className={styles.radioButton!} value="login"></Radio>
-                <Radio className={styles.radioButton!} value="signup"></Radio>
-            </RadioGroup>
+        <Box>
+            <Box>
+                <Tabs value={value} onChange={handleChange}>
+                    <Tab label="Item One" />
+                    <Tab label="Item Two" />
+                </Tabs>
+            </Box>
+            <TabPanel value={value} index={0}>
+          Item One
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+          Item Two
+            </TabPanel>
+        </Box>
 
-            <Box >
+    /*
                 <Box>
                     <Input placeholder="请输入用户名/邮箱/手机号" />
                 </Box>
@@ -167,20 +181,6 @@ function FormCore(props: Props) {
 
                 {loginOrSignup}
             </Box>
-        </div>
+*/
     )
 }
-
-function mapStateToProps(state: any) {
-    const { user } = state
-    return { user }
-}
-
-function mapDispatchToProps(dispatch: any) {
-    return bindActionCreators({ update }, dispatch)
-}
-
-export const LoginForm = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(FormCore)

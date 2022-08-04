@@ -1,15 +1,15 @@
 .btn {
     border-radius: 9999px;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    width: 9rem;
-    font-size: 1.1rem;
+    margin-bottom: 16px;
+    margin-top: 16px;
+    width: 154px;
+    font-size: 18px;
     font-weight: bold;
     color: white;
     text-align: center;
     background: rgba(29, 155, 240);
     cursor: pointer;
-    padding: 0.4rem 0 0.6rem 0;
+    padding: 6px 0 8px 0;
 }
 
 .btn:hover {

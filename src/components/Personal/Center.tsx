@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux"
 import { useNavigate } from "react-router-dom"
 import { Tabs, Tab, IconButton, Button } from "@mui/material"
 
-import { User, update } from "lib/user"
+import { User } from "lib/user"
 import { TweetList } from "components/Tweets/List"
 import styles from "./Center.module.css"
 
@@ -20,7 +20,7 @@ const getBase64 = (img: any, callback: any) => {
     reader.readAsDataURL(img)
 }
 
-function Center(props: Props) {
+function PersonalCenter(props: Props) {
     const navigate = useNavigate()
 
     const { user, update } = props
@@ -132,17 +132,3 @@ function Center(props: Props) {
         </Tabs>
     )
 }
-
-function mapStateToProps(state: any) {
-    const { user } = state
-    return { user }
-}
-
-function mapDispatchToProps(dispatch: any) {
-    return bindActionCreators({ update }, dispatch)
-}
-
-export const PersonalCenter = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Center)

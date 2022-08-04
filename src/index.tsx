@@ -7,6 +7,7 @@ import "./index.css"
 import App from "./components/App"
 import { Home } from "components/Home/Home"
 import { TweetView } from "components/Tweets/View"
+import { LoginForm } from "components/Login/Form"
 
 const container = document.getElementById("root")
 const root = createRoot(container!)
@@ -16,6 +17,7 @@ root.render(
             <Route path="/" element={<App />}>
                 <Route index element={<Home />} />
                 <Route path="tweets/:tweetId" element={<TweetView />} />
+                <Route path="login" element={<LoginForm />} />
             </Route>
         </Routes>
     </BrowserRouter>
