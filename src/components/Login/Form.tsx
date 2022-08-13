@@ -25,7 +25,7 @@ function TabPanel(props: any) {
     )
 }
 
-export const LoginForm = () => {
+export default function LoginForm()  {
     const navigate = useNavigate()
     const [value, setValue] = useState<number>(0)
 

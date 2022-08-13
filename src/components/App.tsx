@@ -5,7 +5,7 @@ import { Grid } from "@mui/material"
 
 import { Nav } from "components/Nav/Nav"
 
-function App() {
+export default function App() {
     return (
         <RecoilRoot>
             <React.StrictMode>
@@ -21,5 +21,3 @@ function App() {
         </RecoilRoot>
     )
 }
-
-export default App

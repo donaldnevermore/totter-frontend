@@ -8,7 +8,7 @@ import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
 import { CommentList } from "components/Comment/List"
 import axios from "axios"
 
-export const TweetView = () => {
+export default function TweetView() {
     const params = useParams()
     const [data, setData] = useState<any>({})
 

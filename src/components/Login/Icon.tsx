@@ -4,7 +4,7 @@ import { Menu, MenuItem, Avatar, Box, IconButton } from "@mui/material"
 
 import { User } from "lib/user"
 import styles from "./Icon.module.css"
-import { getLocal, setLocal } from "lib/local"
+import { getLocal, setLocal } from "lib/util"
 import { TextButton } from "components/TextButton/TextButton"
 
 export const LoginIcon: FC = () => {
