@@ -1,11 +1,11 @@
 import React, { useState } from "react"
-import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
+// import { connect } from "react-redux"
+// import { bindActionCreators } from "redux"
 import { useNavigate } from "react-router-dom"
 import { Tabs, Tab, IconButton, Button } from "@mui/material"
 
-import { User } from "lib/user"
-import { TweetList } from "components/Tweets/List"
+import { User } from "lib/user.js"
+import { TweetList } from "components/Tweets/List.js"
 import styles from "./Center.module.css"
 
 interface Props {

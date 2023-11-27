@@ -2,7 +2,7 @@ import React, { FC } from "react"
 import axios from "axios"
 
 import styles from "./Comment.module.css"
-import { Article } from "components/Article/Article"
+import { Article } from "components/Article/Article.js"
 
 export const Comment: FC<{
     comment: any

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react"
 import { Pagination } from "@mui/material"
 import axios from "axios"
 
-import { Tweet } from "components/Tweets/Tweet"
-import type { TweetItem } from "lib/tweet-item"
+import { Tweet } from "components/Tweets/Tweet.js"
+import type { TweetItem } from "lib/tweet-item.js"
 import styles from "./List.module.css"
 
 export const TweetList = () => {

@@ -1,29 +1,46 @@
 import React, { Suspense, lazy } from "react"
-import { createRoot } from "react-dom/client"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import reportWebVitals from "./reportWebVitals"
+import ReactDOM from "react-dom/client"
+import reportWebVitals from "./reportWebVitals.js"
+import {
+    createBrowserRouter,
+    RouterProvider,
+} from "react-router-dom"
 
 import "./index.css"
-import App from "./components/App"
+import App from "./App.js"
 
-const Home = lazy(() => import("components/Home/Home"))
-const TweetView = lazy(() => import("components/Tweets/View"))
-const LoginForm = lazy(() => import("components/Login/Form"))
+const Home = lazy(() => import("components/Home/Home.js"))
+const TweetView = lazy(() => import("components/Tweets/View.js"))
+const LoginForm = lazy(() => import("components/Login/Form.js"))
 
-const container = document.getElementById("root")
-const root = createRoot(container!)
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <App/>,
+        children: [{
+            index: true,
+            element: <Home/>
+        }]
+    },
+    {
+        path:"tweets/:tweetId",
+        element: <TweetView />
+    },
+    {
+        path:"login", element: <LoginForm />
+    }
+])
+
+const root = ReactDOM.createRoot(
+    document.getElementById("root") as HTMLElement
+)
+
 root.render(
-    <BrowserRouter>
+    <React.StrictMode>
         <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-                <Route path="/" element={<App />}>
-                    <Route index element={<Home />} />
-                    <Route path="tweets/:tweetId" element={<TweetView />} />
-                    <Route path="login" element={<LoginForm />} />
-                </Route>
-            </Routes>
+            <RouterProvider router={router} />
         </Suspense>
-    </BrowserRouter>
+    </React.StrictMode>
 )
 
 // If you want to start measuring performance in your app, pass a function

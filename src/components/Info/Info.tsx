@@ -1,19 +1,21 @@
-import React from "react"
-import moment from "moment"
+import React, { FC } from "react"
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime.js"
+
 
 import styles from "./Info.module.css"
 
-moment.locale("zh-CN")
+dayjs.locale("zh-CN")
+dayjs.extend(relativeTime)
 
-export function Info(props: any) {
-    const { author, createdAt, updatedAt } = props
+export const Info: FC< {author: string, createdAt: string, updatedAt: string }> = ({ author, createdAt, updatedAt }) => {
     return (
         <div className={styles.info}>
             <span>{author}</span>
             <span>发布于</span>
-            <span>{moment(createdAt).format("YYYY-MM-DD HH:mm")}</span>
+            <span>{dayjs(createdAt).format("YYYY-MM-DD HH:mm")}</span>
             <span>更新于</span>
-            <span>{moment(updatedAt).fromNow()}</span>
+            <span>{dayjs(updatedAt).fromNow()}</span>
         </div>
     )
 }

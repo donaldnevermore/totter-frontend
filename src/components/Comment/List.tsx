@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react"
 import axios from "axios"
 
-import { Comment } from "components/Comment/Comment"
+import { Comment } from "components/Comment/Comment.js"
 
 export const CommentList: FC<any> = ({ tweetId }) => {
     const [data, setData] = useState([])

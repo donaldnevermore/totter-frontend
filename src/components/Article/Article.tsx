@@ -1,11 +1,10 @@
-
 import React, { useState } from "react"
 import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 import { ChatBubbleOutline } from "@mui/icons-material"
 
-import { AvatarSide } from "components/AvatarSide/AvatarSide"
-import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
+import { AvatarSide } from "components/AvatarSide/AvatarSide.js"
+import { MDEditor } from "components/MDEditor/MDEditor.js"
 import styles from "./Article.module.css"
 
 export const Article: React.FC<any> = ({ data, handleSubmit }) => {
@@ -30,7 +29,7 @@ export const Article: React.FC<any> = ({ data, handleSubmit }) => {
                     </footer>
                 </main>
             </article>
-            {show ? (<MarkdownEditor text="Reply" handleSubmit={handleSubmit} />) : null }
+            {show ? (<MDEditor text="Reply" handleSubmit={handleSubmit} />) : null }
         </div>
     )
 }

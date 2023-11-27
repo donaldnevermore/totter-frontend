@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import { Grid, Box, Button, Tabs, Tab, Input } from "@mui/material"
 
-import { User } from "lib/user"
+import { User } from "lib/user.js"
 import styles from "./Form.module.css"
 
 type Props = {

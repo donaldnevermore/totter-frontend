@@ -1,11 +1,9 @@
 import React, { FC, useState, useEffect } from "react"
-import ReactMarkdown from "react-markdown"
-import remarkGfm from "remark-gfm"
 import { useParams } from "react-router-dom"
 
-import { Layout } from "components/Layout/Layout"
-import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
-import { CommentList } from "components/Comment/List"
+import { Layout } from "components/Layout/Layout.js"
+import { MDEditor, MDViewer } from "components/MDEditor/MDEditor.js"
+import { CommentList } from "components/Comment/List.js"
 import axios from "axios"
 
 export default function TweetView() {
@@ -38,10 +36,8 @@ export default function TweetView() {
 
     return (
         <Layout>
-            <ReactMarkdown remarkPlugins={[remarkGfm]} >
-                {data.content}
-            </ReactMarkdown>
-            <MarkdownEditor text="Reply" handleSubmit={handleComment} />
+            <MDViewer value={data.content} />
+            <MDEditor text="Reply" handleSubmit={handleComment} />
             <CommentList tweetId={params.tweetId!} />
         </Layout>
     )

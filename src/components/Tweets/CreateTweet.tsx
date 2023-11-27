@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import axios from "axios"
 
-import { User } from "lib/user"
+import { User } from "lib/user.js"
 import styles from "./CreateTweet.module.css"
-import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
-import { TextButton } from "components/TextButton/TextButton"
+import { MDEditor } from "components/MDEditor/MDEditor.js"
+import { TextButton } from "components/TextButton/TextButton.js"
 
 export const CreateTweet: React.FC<{
     user?: User
@@ -35,7 +35,7 @@ export const CreateTweet: React.FC<{
 
     return (
         <div>
-            <MarkdownEditor text="Tweet" handleSubmit={handleTweet} />
+            <MDEditor text="Tweet" handleSubmit={handleTweet} />
             <TextButton onClick={createUser}>Create User</TextButton>
         </div>
     )

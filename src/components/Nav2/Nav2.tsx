@@ -2,7 +2,7 @@ import React from "react"
 import { Link, BrowserRouter } from "react-router-dom"
 import { AppBar, Toolbar, Input, Box } from "@mui/material"
 
-import { Feature } from "components/Nav2/Feature"
+import { Feature } from "components/Nav2/Feature.js"
 import styles from "./Nav2.module.css"
 
 export function Nav2() {

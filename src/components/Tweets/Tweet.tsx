@@ -5,10 +5,10 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
 import styles from "./Tweet.module.css"
-import { MarkdownEditor } from "components/MarkdownEditor/MarkdownEditor"
-import { URL } from "lib/url"
-import { AvatarSide } from "components/AvatarSide/AvatarSide"
-import type { TweetItem } from "lib/tweet-item"
+import { MDEditor } from "components/MDEditor/MDEditor.js"
+import { URL } from "lib/url.js"
+import { AvatarSide } from "components/AvatarSide/AvatarSide.js"
+import type { TweetItem } from "lib/tweet-item.js"
 
 export const Tweet: React.FC<{
     tweet: TweetItem
@@ -68,7 +68,7 @@ export const Tweet: React.FC<{
                     </footer>
                 </article>
             </main>
-            {show ? (<MarkdownEditor text="Reply" handleSubmit={handleComment} />) : null }
+            {show ? (<MDEditor text="Reply" handleSubmit={handleComment} />) : null }
         </div>
     )
 }
